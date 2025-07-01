@@ -5,39 +5,15 @@ import './App.css'
 
 function App() {
   const [count, setCount] = useState(0)
-  const [color,setColor]=useState("Green")
-  const [name,setName]=useState("")
-  const [car,setCar]=useState({
-    name:"BMW",
-    model:"2nd",
-    year:2014,
-    color:"Grey"
-  })
 
   return (
     <>
-    <div>
-     <h3>Count : {count}</h3>
-     <button onClick={()=>setCount(count+1)}>+</button> <button onClick={()=>setCount(count-1)}>-</button>
-    </div>
-
-    <div>
-      <p> Name Of The Color {color}</p>
-      <button onClick={()=>setColor("Blue")} >Change Color</button>
-    </div>
-
-    <div>
-      <p> Name : {name}</p>
-      <input type="text" value={name}  onChange={(e)=>setName(e.target.value)}/>
-    </div>
-
-    <div>
-      <p>Car Name:{car.name} </p>
-      <p>Car Model:{car.model} </p>
-      <p>Car Color:{car.color} </p>
-      <p>Car Year:{car.year} </p>
-      <button onClick={()=>setCar({name:"Swift",model:"1st",color:"Yello",year:2024})}>Change Name</button> 
-    </div>
+      
+      <p>Count :{count}</p>
+      <button onClick={()=>setCount(count+1)}>Increment</button>
+      <button onClick={()=>setCount(count-1)}>Decrement</button>
+      <button onClick={()=>setCount(0)}>Reset</button>
+      <a href='C:\Users\Admin\Documents\Demo1\src\Pages\Login.jsx'>Login</a>
     </>
   )
 }
