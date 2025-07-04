@@ -1,38 +1,55 @@
-import { useState } from 'react'
-import './App.css'
-import { ToastContainer,toast } from 'react-toastify';
+import React, { useState,useEffect } from "react";
+import { ToastContainer,toast } from "react-toastify";
+import "./index.css"
+import "./App.css"
 
-function App() {
-  const[email,setEmail]=useState("");
+const LoginPage=()=>{
+  const notify = () => toast("Refresh ..!");
+  const notify1=()=>toast("Please Login");
+  const notify2=()=>toast("Please Enter Correct Email And Password");
+  const notify3=()=>toast("This function is not available currently");
+  const [email,setEmail]=useState("");
   const [password,setPassword]=useState("");
- const notifyLogin=()=>{
-  toast("Login Successfully !!");
- }
+  const [isLogin,setLogin]=useState(false)
 
- const notifyError=()=>{
-  toast("Please enter correct email and password ");
- }
-  function handleLogin(){
-    if(email==="rahul@gmail.com" && password==="password"){
-      notifyLogin();
-    }else{
-      notifyError();
+   useEffect(() => {
+    notify1();
+  }, []);
+
+  useEffect(() => {
+    if (isLogin) {
+     
+    notify3();
     }
-  }
+  }, [isLogin]);
 
-  return (
-    <div class="abc">
-      <br />
-     <h2>Login Page !!</h2>
-     <br />
-     <input type="email" value={email} onChange={(e)=>setEmail(e.target.value)} placeholder='Enter your email'/>
-     <br /><br />
-     <input type="password" value={password} onChange={(e)=>setPassword(e.target.value)} placeholder='Enter your password'/>
-     <br /><br />
-     <button onClick={handleLogin}>Submit</button>
-     <ToastContainer />
-    </div>
-  )
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    if (email === "rahul@gmail.com" && password === "password") {
+      notify1();
+      setIsLoggedIn(true);
+    } else {
+      notify2();
+    }
+  };
+
+  const handleForgotPassword = () => {
+   notify3();
+  };
+return (
+<div class="abc">
+  <button onClick={notify}>Refresh</button>
+<h2>Login Page</h2>
+<br /><br />
+<input type="text" value={email} onChange={(e)=>e.target.value} placeholder="Enter Email" />
+<br /><br />
+<input type="text" value={password} onChange={(e)=>e.target.value} placeholder="Enter Password" />
+<br /><br />
+ 
+<button onClick={handleSubmit}>Login</button>
+<br /><br />
+<button onClick={handleForgotPassword}>Forgot Password</button>
+<ToastContainer/> 
+</div>)
 }
-
-export default App
+export default LoginPage;
